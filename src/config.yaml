@@ -1,0 +1,4 @@
+urduglyphs_path: '/Users/numair/Desktop/Numair_Personal/urdu_experiments/src/UrduGlyphs.txt'
+best_norm: '/Users/numair/Desktop/Numair_Personal/urdu_experiments/src/best_norm_ED.pth'
+yolo_model_pretrained: '/Users/numair/Desktop/Numair_Personal/urdu_experiments/src/yolov8m_UrduDoc.pt'
+
