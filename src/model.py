@@ -1,8 +1,8 @@
 # A simplified version of the original code - https://github.com/abdur75648/UTRNet-High-Resolution-Urdu-Text-Recognition
 import torch.nn as nn
-from ..src.modules.dropout_layer import dropout_layer
-from ..src.modules.sequence_modeling import BidirectionalLSTM
-from ..src.modules.feature_extraction import UNet_FeatureExtractor
+from src.modules.dropout_layer import dropout_layer
+from src.modules.sequence_modeling import BidirectionalLSTM
+from src.modules.feature_extraction import UNet_FeatureExtractor
 
 class Model(nn.Module):
 

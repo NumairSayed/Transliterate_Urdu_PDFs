@@ -7,6 +7,13 @@ from .read import text_recognizer
 import fitz
 import yaml
 import os
+from pathlib import Path
+
+# Get the path of the current file
+current_file = Path(__file__)
+
+# Get the parent directory
+parent_directory = current_file.parent
 
 pwd = os.getcwd()
 
@@ -15,9 +22,8 @@ def initialize_models():
     # device = torch.device('mps' if torch.cuda.is_available() else 'cpu')
     device = torch.device('mps' if torch.backends.mps.is_available() else 'cuda' if torch.cuda.is_available() else 'cpu')
 
-    
     # Load vocabulary
-    with open(os.path.join(pwd,"UrduGlyphs.txt"), "r", encoding="utf-8") as file:
+    with open(os.path.join(parent_directory,"UrduGlyphs.txt"), "r", encoding="utf-8") as file:
         content = ''.join(line.strip() for line in file) + " "
     
     # Initialize recognition model
@@ -27,12 +33,13 @@ def initialize_models():
     
     # Load model weights
     recognition_model.load_state_dict(
-        torch.load("best_norm_ED.pth", map_location=device)
+        torch.load(os.path.join(parent_directory,"best_norm_ED.pth"),weights_only=True,map_location=device)
     )
     recognition_model.eval()
     
     # Load detection model
-    detection_model = YOLO("yolov8m_UrduDoc.pt")
+    detection_model = YOLO(model = os.path.join(parent_directory,"yolov8m_UrduDoc.pt"))
+    
     
     return recognition_model, detection_model, converter, device
 

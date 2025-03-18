@@ -1,3 +1,3 @@
-from src import wrapper
+from src.wrapper import main
 
-wrapper()
+main()

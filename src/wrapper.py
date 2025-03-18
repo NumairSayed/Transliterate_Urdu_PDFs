@@ -3,6 +3,14 @@ import fitz
 from tqdm.auto import tqdm
 import fitz
 from PIL import Image
+from pathlib import Path
+import os
+
+# Get the path of the current file
+current_file = Path(__file__)
+
+# Get the parent directory
+parent_directory = current_file.parent
 
 def pdf_to_pil_images(pdf_path):
     """Converts a PDF file to a list of PIL Image objects."""
@@ -19,10 +27,9 @@ def pdf_to_pil_images(pdf_path):
     pdf_document.close()
     return images
 
-if __name__ == '__main__':
-        
+def main():
     # Example usage
-    pdf_file = "anware_shariah.pdf"
+    pdf_file = os.path.join(parent_directory,"anware_shariah.pdf")
     image_list = pdf_to_pil_images(pdf_file)
     page_wise_recognition = []
     for image in tqdm(image_list):
@@ -34,6 +41,9 @@ if __name__ == '__main__':
             file.writelines(text)
 
 
+if __name__ == '__main__':
+    main()        
+    
 
 
 # Now you can access each page as a PIL Image object
